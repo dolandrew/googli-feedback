@@ -3,3 +3,4 @@ gunicorn
 typing
 pydantic
 requests
+twitter
