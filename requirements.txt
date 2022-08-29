@@ -1,4 +1,5 @@
-fastapi
+flask
+gunicorn
 typing
 pydantic
 requests
