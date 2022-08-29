@@ -6,20 +6,20 @@ twitter = Twitter(
 	auth = OAuth(
 		os.environ.get('OAUTH_TOKEN'),
 		os.environ.get('OAUTH_SECRET'),
-    	os.environ.get('CONSUMER_KEY'),
+		os.environ.get('CONSUMER_KEY'),
 		os.environ.get('CONSUMER_SECRET')
 	)
 )
 
 def tweet(feedback: Feedback=None):
-	author = feedback['author']
 	like = feedback['like']
-	comments = feedback['comments']
 
-	tweet = author + ' ' + ('dis' if not like else '') + 'liked the Googli'
+	if 'author' not in feedback:
+		feedback['author'] = 'Someone'
 
-	if (comments):
-		tweet = tweet + '\n\n' + comments
+	tweet = feedback['author'] + ' ' + ('dis' if not like else '') + 'liked the Googli'
+	if 'comments' in feedback:
+		tweet = tweet + '\n\n' + feedback['comments']
 
-	tweet = tweet + '\n\n' + str(int(time.time()/100))
+	tweet = tweet + '\n\n' + str(int(time.time()))
 	return twitter.statuses.update(status=tweet)
