@@ -4,3 +4,5 @@ typing
 pydantic
 requests
 twitter
+flask_api_docs.api
+flask_cors
